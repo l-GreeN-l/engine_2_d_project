@@ -1,30 +1,36 @@
-from tkinter import *
 from shapes.circle import Circle
 from shapes.rectangle import Rectangle
 from shapes.triangle import Triangle
+from shapes.shape import Shape
 
+class Engine2D():
 
+    __canvas: dict
 
-root = Tk()
-# root.attributes("-fullscreen", True)
-root.title("engine2D")
-root.geometry("1920x1080")
+    def __init__(self):
+        self.__canvas = {}
 
-# label = Label(text="Hello METANIT.COM")
+    def add(self, item: Shape):
+        if type(item == Shape) and item != None:
+            self.__canvas.update({id(item): item})
+        else:
+            raise TypeError('Need Shape')
 
-width, height = root.wm_maxsize()
+    def clear(self):
+        self.__canvas = {}
 
-# canvas = Canvas(bg="white", width=width-200, height=height)
-# canvas.pack(anchor=CENTER, expand=1)
+    def get_canvas(self):
+        return self.__canvas.copy()
 
+    def get_object_from_canvas(self, id_obj):
+        return self.__canvas.get(id_obj)
 
-btn_circle = Button(text='Circle', height=10, width=10, relief='groove')
+    def draw(self):
 
-btn_circle.pack()
+        for item in self.__canvas:
+            item.draw()
 
-# label.pack()  # размещаем метку в окне
-root.mainloop()
-
+        self.clear()
 
 
 
