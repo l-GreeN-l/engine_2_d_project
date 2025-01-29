@@ -1,5 +1,4 @@
 from .shape import Shape
-from .color import Color
 
 
 class Circle(Shape):
@@ -37,4 +36,3 @@ class Circle(Shape):
         return {
             "x": self.__x, "y": self.__y, "radius": self.__radius
         }
-

@@ -1,7 +1,6 @@
 from shapes.rectangle import Rectangle
 from shapes.color import Color
 from engine2D import Engine2D
-from math import sin, radians
 
 
 class TestRectangle:

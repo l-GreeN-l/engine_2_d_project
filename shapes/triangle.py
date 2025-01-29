@@ -1,6 +1,5 @@
 from .shape import Shape
 from math import sin, radians
-from .color import Color
 
 
 class Triangle(Shape):

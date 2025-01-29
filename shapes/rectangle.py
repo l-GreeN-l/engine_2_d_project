@@ -1,5 +1,4 @@
 from .shape import Shape
-from .color import Color
 
 
 class Rectangle(Shape):
@@ -17,7 +16,6 @@ class Rectangle(Shape):
                 print('Error - d1 or d1 = 0')
         else:
             return super().__new__(cls)
-
 
     def __init__(self, x: float, y: float, d1: float, d2: float):
         """
@@ -42,4 +40,3 @@ class Rectangle(Shape):
             "x": self.__x, "y": self.__y,
             "d1": self.__d1, "d2": self.__d2, "d3": self.__d3, "d4": self.__d4
         }
-
