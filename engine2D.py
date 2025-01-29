@@ -3,6 +3,7 @@ from shapes.rectangle import Rectangle
 from shapes.triangle import Triangle
 from shapes.shape import Shape
 from shapes.color import Color
+from copy import deepcopy, copy
 
 
 class Engine2D:
@@ -14,8 +15,10 @@ class Engine2D:
 
     def add(self, item: Shape):
         if type(item == Shape) and item != None:
-            item.set_color(self.__color_pen)
-            self.__canvas_list.update({id(item): item})
+            object_ = deepcopy(item)
+            object_.set_color(self.__color_pen)
+            self.__canvas_list.update({id(object_): object_})
+            return id(object_)
 
     def __clear(self):
         self.__canvas_list = {}

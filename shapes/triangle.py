@@ -13,12 +13,15 @@ class Triangle(Shape):
     __angle1: float
     __angle2: float
 
-    def __new__(cls, angle: float, angle1: float, angle2: float, delta1: float, *args, **kwargs):
-
-        if (angle1 > 0 and angle2 > 0 and (angle2 + angle1) < 180 and delta1 > 0) > 0:
-            return super().__new__(cls)
+    def __new__(cls, *args, **kwargs):
+        if len(kwargs) > 0 or len(args) > 0:
+            if (kwargs.get('angle1') > 0 and kwargs.get('angle2') > 0 and
+                    kwargs.get('angle2') + kwargs.get('angle1') < 180 and kwargs.get('delta1') > 0):
+                return super().__new__(cls)
+            else:
+                print('Error in arguments')
         else:
-            print('Error in arguments')
+            return super().__new__(cls)
 
     def __init__(self, x: int, y: int, angle: float, angle1: float, angle2: float, delta1: float):
         """
@@ -44,6 +47,13 @@ class Triangle(Shape):
         self.__angle3 = 180 - self.__angle1 - self.__angle2
         self.__delta2 = self.__delta1 * sin(radians(self.__angle1)) / sin(radians(self.__angle3))
         self.__delta3 = self.__delta2 * sin(radians(self.__angle2)) / sin(radians(self.__angle1))
+
+    def get_parameters(self):
+        return {
+            "x": self.__x, "y": self.__y,
+            "angle1": self.__angle1, "angle2": self.__angle2, "angle3": self.__angle3, "angle": self.__angle,
+            "delta1": self.__delta1, "delta2": self.__delta2, "delta3": self.__delta3
+        }
 
     def draw(self):
         message = (f" first point - ({self.__x}, {self.__y})"
